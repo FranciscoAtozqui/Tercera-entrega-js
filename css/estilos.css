@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-index{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left{
+    display: flex;
+    place-items: center;
+    text-align: center;
+    background-image: url(../img/bg-image.jpg);
+    background-size: cover;
+    height: 100vh;
+    justify-content: center;
+}
+
+.container-icon{
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+}
+
+/*Productos*/
+
+.card img{
+    width: 10rem;
+    height: 11rem;
+}
+
+
+
+
+
+
+
