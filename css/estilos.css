@@ -32,10 +32,36 @@
 
 /*Productos*/
 
-.card img{
+.cards img{
     width: 10rem;
     height: 11rem;
 }
+
+.card-suplentes{
+    border-radius: 20px;
+}
+
+.card-suplentes img{
+    width: 14rem;
+    height: 18rem;
+    border-radius: 30px;
+}
+
+.card-suplentes{
+    display: flex;
+    align-items: center;
+}
+
+.title-inicio{
+    color: white;
+}
+
+.oferta{
+    color: rgb(5, 212, 22);
+    font-weight: bold;
+}
+
+
 
 
 
