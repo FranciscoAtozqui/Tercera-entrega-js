@@ -30,6 +30,11 @@
     height: 40px;
 }
 
+#warning{
+    font-weight: bold;
+    font-size: 18px;
+}
+
 /*Productos*/
 
 .cards img{
@@ -60,6 +65,7 @@
     color: rgb(5, 212, 22);
     font-weight: bold;
 }
+
 
 
 
