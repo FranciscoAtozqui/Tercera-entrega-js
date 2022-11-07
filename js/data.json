@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "pais": "argentina",
+        "precio": 4000,
+        "imagen": "argentina.jpg"
+    },
+    {
+        "id": 2,
+        "pais": "alemania",
+        "precio": 3800,
+        "imagen": "alemania.jpg"
+    },
+    {
+        "id": 3,
+        "pais": "belgica",
+        "precio": 3000,
+        "imagen": "belgica.jpg"
+    },
+    {
+        "id": 4,
+        "pais": "brasil",
+        "precio": 3500,
+        "imagen": "brasil.jpg"
+    },
+    {
+        "id": 5,
+        "pais": "francia",
+        "precio": 3700,
+        "imagen": "francia.jpg"
+    },
+    {
+        "id": 6,
+        "pais": "inglaterra",
+        "precio": 3400,
+        "imagen": "inglaterra.jpg"
+    },
+    {
+        "id": 7,
+        "pais": "uruguay",
+        "precio": 2800,
+        "imagen": "uruguay.jpg"
+    },
+    {
+        "id": 8,
+        "pais": "portugal",
+        "precio": 3200,
+        "imagen": "portugal.jpg"
+    },
+    {
+        "id": 9,
+        "pais": "portugal-suplente",
+        "precio": 3200,
+        "imagen": "port-suplente.jpg"
+    },
+    {
+        "id": 10,
+        "pais": "brasil-suplente",
+        "precio": 3200,
+        "imagen": "br-suplente.jpg"
+    },
+    {
+        "id": 11,
+        "pais": "argentina-suplente",
+        "precio": 3200,
+        "imagen": "arg-suplente.jpg"
+    }
+]
