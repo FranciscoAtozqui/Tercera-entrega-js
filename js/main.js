@@ -8,6 +8,9 @@ const camisetas = [
     { id: 6, pais: "inglaterra", precio: 3400, imagen: "inglaterra.jpg" },
     { id: 7, pais: "uruguay", precio: 2800, imagen: "uruguay.jpg" },
     { id: 8, pais: "portugal", precio: 3200, imagen: "portugal.jpg" },
+    { id: 9, pais: "argentina-suplente", precio: 3100, imagen: "arg-suplente.jpg" },
+    { id: 10, pais: "brasil-suplente", precio: 2800, imagen: "br-suplente.jpg" },
+    { id: 11, pais: "portugal-suplente", precio: 2200, imagen: "port-suplente.jpg" },
 ];
 
 //DOM
@@ -15,7 +18,7 @@ const camisetas = [
 let inputBuscar = document.querySelector("#buscarProducto");
 const cards = document.querySelector("#productosBuscados");
 const guardar = document.querySelector("#guardarValor");
-const btnCarrito = document.querySelector("#btnCarrito");
+const btnCarrito = document.querySelector("#btn");
 const saludo = document.querySelector("#saludo");
 const vaciar = document.querySelector("#btnVaciar");
 const carritoProductos = document.querySelector("#ProductosDelCarrito");
@@ -37,8 +40,6 @@ function filtrarProducto(arr, filtro) {
 }
 
 
-
-
 //EVENTO
 inputBuscar.addEventListener('input', (e) => {
     e.preventDefault();
@@ -48,7 +49,7 @@ inputBuscar.addEventListener('input', (e) => {
         const divCard = document.createElement('div');
         divCard.classList.add('cards');
         divCard.style.width = "18 rem";
-        let = { imagen, pais, precio } = el
+        let = { imagen, pais, precio, id } = el
         const card = `
         <section class="container" id="container-cards">
             <div class="row cards-container d-flex justify-content-center">
@@ -57,7 +58,7 @@ inputBuscar.addEventListener('input', (e) => {
                 <div class="card-body">
                     <h5 class="card-title">Camiseta de ${pais}</h5>
                     <p class="card-text">Precio: $${precio}</p>
-                    <button class="btn btn-primary bg-dark" id="btnCarrito">Agregar al carrito<i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="btn btn-primary bg-dark" id="btnCarrito btn${id}">Agregar al carrito<i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
                 </div>
             </div>
@@ -68,21 +69,38 @@ inputBuscar.addEventListener('input', (e) => {
     })
 })
 
-// btnCarrito.addEventListener('click', (e) => {
-//     e.preventDefault();
-   
-// })
 
-
-function cargarProducto() {
-    fetch('data.json')
+function cargarProductosAlCarrito() {
+    fetch('../js/data.json')
         .then(res => res.json())
-        .then(res => {
-            console.log(res)
+        .then(productos => {
+            productos.forEach(producto => {
+                carritoProductos.innerHTML = `
+                    <aside id="ProductosDelCarrito" class="container">
+                        <div class="row d-flex justify-content-center">
+                            <div class="card col col-12 col-sm-10 col-md-8 col-lg-6 m-2" style="width: 15rem;">
+                                <h4 class="title-inicio text-center">Carrito</h4>
+                                <img src= "../img/${producto.imagen}" class="card-img-top mt-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Camiseta de ${producto.pais}</h5>
+                                <p class="card-text oferta">Precio: $${producto.precio}</p>
+                                <button class="btn btn-primary" id="btnVaciar">Vaciar<i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                    </aside>
+                    `
+            })
         });
-}
 
-cargarProducto();
+
+}
+    
+btnCarrito.addEventListener('click', cargarProductosAlCarrito);
+
+
+
+
 
 
 
