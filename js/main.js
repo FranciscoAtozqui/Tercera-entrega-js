@@ -8,9 +8,9 @@ const camisetas = [
     { id: 6, pais: "inglaterra", precio: 3400, imagen: "inglaterra.jpg" },
     { id: 7, pais: "uruguay", precio: 2800, imagen: "uruguay.jpg" },
     { id: 8, pais: "portugal", precio: 3200, imagen: "portugal.jpg" },
-    { id: 9, pais: "argentina-suplente", precio: 3100, imagen: "arg-suplente.jpg" },
+    { id: 9, pais: "arg-suplente", precio: 3100, imagen: "arg-suplente.jpg" },
     { id: 10, pais: "brasil-suplente", precio: 2800, imagen: "br-suplente.jpg" },
-    { id: 11, pais: "portugal-suplente", precio: 2200, imagen: "port-suplente.jpg" },
+    { id: 11, pais: "portugal-sup", precio: 2200, imagen: "port-suplente.jpg" },
 ];
 
 //DOM
@@ -18,10 +18,11 @@ const camisetas = [
 let inputBuscar = document.querySelector("#buscarProducto");
 const cards = document.querySelector("#productosBuscados");
 const guardar = document.querySelector("#guardarValor");
-const btnCarrito = document.querySelector("#btn");
 const saludo = document.querySelector("#saludo");
+const btnCarrito = document.querySelector("#btn");
 const vaciar = document.querySelector("#btnVaciar");
-const carritoProductos = document.querySelector("#ProductosDelCarrito");
+const carritoProductos = document.querySelector("#productosDelCarrito");
+
 
 //FUNCIONES
 
@@ -58,7 +59,7 @@ inputBuscar.addEventListener('input', (e) => {
                 <div class="card-body">
                     <h5 class="card-title">Camiseta de ${pais}</h5>
                     <p class="card-text">Precio: $${precio}</p>
-                    <button class="btn btn-primary bg-dark" id="btnCarrito btn${id}">Agregar al carrito<i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="btn btn-primary" id="btnCarrito btn${id}">Agregar al carrito<i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
                 </div>
             </div>

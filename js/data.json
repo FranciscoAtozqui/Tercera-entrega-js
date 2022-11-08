@@ -1,4 +1,3 @@
-
 [
     {
         "id": 1,
@@ -47,5 +46,23 @@
         "pais": "portugal",
         "precio": 3200,
         "imagen": "portugal.jpg"
+    },
+    {
+        "id": 9,
+        "pais": "arg-suplente",
+        "precio": 3100,
+        "imagen": "arg-suplente.jpg"
+    },
+    {
+        "id": 10,
+        "pais": "brasil-suplente",
+        "precio": 2800,
+        "imagen": "br-suplente.jpg"
+    },
+    {
+        "id": 11,
+        "pais": "portugal-sup",
+        "precio": 2200,
+        "imagen": "port-suplente.jpg"
     }
 ]
