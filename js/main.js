@@ -24,6 +24,7 @@ const contenedorProductos = document.getElementById("productosDelCarrito")
 const carrito = [];
 
 
+
 //FUNCIONES
 
 function buscarProducto(arr, filtro) {
@@ -59,7 +60,7 @@ function actualizarCarrito() {
             <div class="card col-xl-3 col-md-6 col-sm-12 card-titulares m-2">
                   <img src="../img/${producto.imagen}" class="card-img-top img-fluid py-3">
                   <div class="card-body text-center">
-                      <h3 class="card-title"> Camiseta de ${producto.pais} </h3>
+                      <h5 class="card-title"> Camiseta de ${producto.pais} </h5>
                       <p class="card-text oferta"> Precio: $ ${producto.precio} </p>
                       <button onClick = "eliminarDelCarrito(${producto.id})" class="btn btn-primary">Eliminar del Carrito</button>
                   </div>
@@ -68,6 +69,7 @@ function actualizarCarrito() {
     });
 
     contenedorProductos.innerHTML = aux;
+    calcularTotalCompra();
 }
 
 
@@ -93,7 +95,6 @@ fetch('../js/data.json')
     .then(productos => {
         productos.forEach(producto => {
             const divProducto = document.createElement('div');
-            divProducto.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'm-2');
             divProducto.innerHTML = `
             <section class="container" id="container-cards">
             <div class="row cards-container d-flex justify-content-center">
@@ -108,24 +109,17 @@ fetch('../js/data.json')
             </div>
         </section>`
             
-            cards.appendChild(divProducto); 
+            // cards.appendChild(divProducto); 
             const boton = document.getElementById(`boton${producto.id}`);
             boton.addEventListener('click', () => {
                 agregarAlCarrito(producto.id);
+                swal({
+                    title: "Agregado al carrito correctamente",
+                    icon: "success",
+                });
             });
         });
     });
-
-
-
-
-
-
-
-
-
-
-
 
 //EVENTO BUSQUEDA PRODUCTOS
 
@@ -154,8 +148,33 @@ inputBuscar.addEventListener('input', (e) => {
         `
         divCard.innerHTML = card;
         cards.append(divCard);
+        const boton = document.getElementById(`btn${id}`);
+        boton.addEventListener('click', () => {
+            agregarAlCarrito(el.id);
+            swal({
+                title: "Agregado al carrito correctamente",
+                icon: "success",
+            });
+        })
     })
 })
+
+const totalCompra = document.getElementById('totalCompra');
+
+const calcularTotalCompra = () => {
+    let total = 0;
+    carrito.forEach((producto) => {
+        total += producto.precio;
+    });
+    totalCompra.innerHTML = '$' + total;
+};
+
+const btnCompra = document.getElementById('btnComprar');
+
+btnCompra.addEventListener('click', () => {
+    
+})
+
 
 
 
