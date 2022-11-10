@@ -13,7 +13,9 @@ const camisetas = [
     { id: 11, pais: "portugal-sup", precio: 2200, imagen: "port-suplente.jpg" },
 ];
 
-//DOM
+
+
+//LLAMADA A DOM
 
 let inputBuscar = document.querySelector("#buscarProducto");
 const cards = document.querySelector("#productosBuscados");
@@ -26,6 +28,7 @@ const carrito = [];
 
 
 //FUNCIONES
+//BUSCARPRODUCTO
 
 function buscarProducto(arr, filtro) {
     const encontrarProducto = arr.find((el) => {
@@ -34,7 +37,7 @@ function buscarProducto(arr, filtro) {
     return encontrarProducto;
 }
 
-
+//FILTRAR PRODUCTO
 function filtrarProducto(arr, filtro) {
     const filtrado = arr.filter((el) => {
         return el.pais.includes(filtro);
@@ -42,21 +45,21 @@ function filtrarProducto(arr, filtro) {
     return filtrado;
 }
 
-    //AGREGAR CARRITO
-    const agregarAlCarrito = (id) => {
-        const producto = camisetas.find((producto) => producto.id === id);
-        carrito.find((producto) => producto.id === id);
+//AGREGAR CARRITO
+const agregarAlCarrito = (id) => {
+    const producto = camisetas.find((producto) => producto.id === id);
+    carrito.find((producto) => producto.id === id);
 
-        carrito.push(producto);
-        actualizarCarrito();
+    carrito.push(producto);
+    actualizarCarrito();
 };
 
 
-    //ACTUALIZAR CARRITO
+//ACTUALIZAR CARRITO
 function actualizarCarrito() {
-    let aux = '';
+    let contenedor = '';
     carrito.forEach((producto) => {
-        aux += `
+        contenedor += `
             <div class="card col-xl-3 col-md-6 col-sm-12 card-titulares m-2">
                   <img src="../img/${producto.imagen}" class="card-img-top img-fluid py-3">
                   <div class="card-body text-center">
@@ -68,7 +71,7 @@ function actualizarCarrito() {
         `;
     });
 
-    contenedorProductos.innerHTML = aux;
+    contenedorProductos.innerHTML = contenedor;
     calcularTotalCompra();
 }
 
@@ -109,7 +112,7 @@ fetch('../js/data.json')
             </div>
         </section>`
             
-            // cards.appendChild(divProducto); 
+            cards.appendChild(divProducto); 
             const boton = document.getElementById(`boton${producto.id}`);
             boton.addEventListener('click', () => {
                 agregarAlCarrito(producto.id);
@@ -121,45 +124,10 @@ fetch('../js/data.json')
         });
     });
 
-//EVENTO BUSQUEDA PRODUCTOS
-
-inputBuscar.addEventListener('input', (e) => {
-    e.preventDefault();
-    let busqueda = filtrarProducto(camisetas, inputBuscar.value.toLowerCase());
-    cards.innerHTML = ""
-    busqueda.forEach((el) => {
-        const divCard = document.createElement('div');
-        divCard.classList.add('cards');
-        divCard.style.width = "18 rem";
-        let = { imagen, pais, precio, id } = el
-        const card = `
-        <section class="container" id="container-cards">
-            <div class="row cards-container d-flex justify-content-center">
-                <div class="card card-titulares col col-12 col-sm-10 col-md-8 col-lg-6 m-2" style="width: 20rem;">
-                <img src="../img/${imagen}" class="card-img-top mt-4" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Camiseta de ${pais}</h5>
-                    <p class="card-text">Precio: $${precio}</p>
-                    <button class="btn btn-primary" id="btn${id}">Comprar<i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-                </div>
-            </div>
-        </section>
-        `
-        divCard.innerHTML = card;
-        cards.append(divCard);
-        const boton = document.getElementById(`btn${id}`);
-        boton.addEventListener('click', () => {
-            agregarAlCarrito(el.id);
-            swal({
-                title: "Agregado al carrito correctamente",
-                icon: "success",
-            });
-        })
-    })
-})
+// COMPRA TOTAL
 
 const totalCompra = document.getElementById('totalCompra');
+const btnCompra = document.getElementById('btnComprar');
 
 const calcularTotalCompra = () => {
     let total = 0;
@@ -169,10 +137,22 @@ const calcularTotalCompra = () => {
     totalCompra.innerHTML = '$' + total;
 };
 
-const btnCompra = document.getElementById('btnComprar');
+//FINALIZAR COMPRA
+
 
 btnCompra.addEventListener('click', () => {
-    
+(carrito.length === 0) ?
+    swal({
+        title: "Error. El carrito está vacío!",
+    })
+    :
+    swal({
+         title: "Compra Exitosa!",
+         text: "Precio: " + totalCompra.innerHTML,
+         icon: "success",
+    });
+    carrito.splice(0, carrito.length);
+    actualizarCarrito();
 })
 
 
@@ -202,32 +182,7 @@ btnCompra.addEventListener('click', () => {
 
 
 
-// function cargarProductosAlCarrito() {
-//     fetch('../js/data.json')
-//         .then(res => res.json())
-//         .then(productos => {
-//             productos.forEach(producto => {
-//                 const carritoProductos = document.querySelector("#productosDelCarrito");
-//                 carritoProductos.createElement('div')
-//                 carritoProductos.innerHTML = `
-//                 <section class="container" id="container-cards">
-//                     <div class="row cards-container d-flex justify-content-center">
-//                         <div class="card card-titulares col col-12 col-sm-10 col-md-8 col-lg-6 m-2" style="width: 20rem;">
-//                         <img src="../img/${producto.imagen}" class="card-img-top mt-4" alt="">
-//                 <div class="card-body">
-//                     <h5 class="card-title">Camiseta de ${producto.pais}</h5>
-//                     <p class="card-text">Precio: $${producto.precio}</p>
-//                     <button class="btn btn-primary" id="btnVaciar">Borrar<i class="fa-solid fa-cart-shopping"></i></button>
-//                 </div>
-//                 </div>
-//             </div>
-//                 </section>
-//           `
-//         })
-//     });
-// }
-    
-// btnCarrito.addEventListener('click', cargarProductosAlCarrito);
+
 
     
 
