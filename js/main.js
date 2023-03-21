@@ -105,7 +105,7 @@ fetch('../js/data.json')
                 <img src="../img/${producto.imagen}" class="card-img-top mt-4" alt="">
                 <div class="card-body">
                     <h5 class="card-title">Camiseta de ${producto.pais}</h5>
-                    <p class="card-text">Precio: $${producto.precio}</p>
+                    <p class="card-text oferta">Precio: $${producto.precio}</p>
                     <button class="btn btn-primary" id="boton${producto.id}">Comprar<i class="fa-solid fa-cart-shopping"></i></button>
                 </div>
                 </div>
@@ -154,6 +154,23 @@ btnCompra.addEventListener('click', () => {
     carrito.splice(0, carrito.length);
     actualizarCarrito();
 })
+
+// btnSearch.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     let busqueda = filtrarProducto(camisetas, inputBuscar.value.toLowerCase());
+//     cards.innerHTML = `
+//     <section class="container" id="container-cards">
+//         <div class="row cards-container d-flex justify-content-center">
+//             <div class="card col col-12 col-sm-10 col-md-8 col-lg-6 m-2" style="width: 20rem;">
+//                 <img src="../img/${busqueda[0].imagen}" class="card-img-top" alt="">
+//                 <div class="card-body">
+//                 <h5 class="card-title">Camiseta de ${busqueda[0].pais}</h5>
+//                 <p class="card-text">Precio: ${busqueda[0].precio}</p>
+//             </div>
+//         </div>
+//         </div>
+//     </section>`
+// })
 
 
 
